@@ -184,11 +184,13 @@ textarea {
   .App {
     display: flex;
     flex-direction: column;
+   
   } 
   .app-sidebar{
     width: 90%;
     margin: auto;
     height: 500px;
+    overflow-y:visible;
   }
   .app-main{
     width: 90%;
