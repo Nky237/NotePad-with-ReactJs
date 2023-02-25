@@ -1,3 +1,7 @@
+import { useState } from 'react';
+import {CopyToClipboard} from 'react-copy-to-clipboard';
+
+
 const Sidebar = ({
     notes,
     onAddNote,
@@ -6,7 +10,7 @@ const Sidebar = ({
     setActiveNote,
   }) => {
     const sortedNotes = notes.sort((a, b) => b.lastModified - a.lastModified);
-  
+    const [copy, setCopy] = useState(false)
     return (
       <div className="app-sidebar">
         <div className="app-sidebar-header">
@@ -21,6 +25,10 @@ const Sidebar = ({
             >
               <div className="sidebar-note-title">
                 <strong>{title}</strong>
+                <CopyToClipboard text = {notes}
+                onCopy={() => setCopy(true)}>
+                <button>{copy ? "copied" : "copy"}</button>
+                 </CopyToClipboard>
                 <button onClick={(e) => onDeleteNote(id)}>Delete</button>
               </div>
   
