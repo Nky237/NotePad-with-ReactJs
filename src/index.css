@@ -103,6 +103,18 @@ button:hover {
   font-size: 2rem;
   color: #999;
 }
+.cla button{
+  margin: 0 20px;
+  align-items: center;
+  color: #08c;
+}
+.font{
+  border: 1px solid black;
+  font-size: 20px;
+  width: 60px;
+  
+
+}
 
 /* Editing */
 .app-main-note-edit {
