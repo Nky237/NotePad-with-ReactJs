@@ -1,20 +1,26 @@
-import { useEffect, useState } from "react";
+import React, { Component } from "react";
 import uuid from "react-uuid";
 import "./App.css";
 import Main from "./components/Main";
 import Sidebar from "./components/Sidebar";
 
-function App() {
-  const [notes, setNotes] = useState(
-    localStorage.notes ? JSON.parse(localStorage.notes) : []
-  );
-  const [activeNote, setActiveNote] = useState(false);
+class App extends Component {
+  constructor(props) {
+    super(props);
 
-  useEffect(() => {
-    localStorage.setItem("notes", JSON.stringify(notes));
-  }, [notes]);
+    this.state = {
+      notes: localStorage.notes ? JSON.parse(localStorage.notes) : [],
+      activeNote: false,
+    };
+  }
 
-  const onAddNote = () => {
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.notes !== prevState.notes) {
+      localStorage.setItem("notes", JSON.stringify(this.state.notes));
+    }
+  }
+
+  onAddNote = () => {
     const newNote = {
       id: uuid(),
       title: "Untitled Note",
@@ -22,42 +28,47 @@ function App() {
       lastModified: Date.now(),
     };
 
-    setNotes([newNote, ...notes]);
-    setActiveNote(newNote.id);
+    this.setState((prevState) => ({
+      notes: [newNote, ...prevState.notes],
+      activeNote: newNote.id,
+    }));
   };
 
-  const onDeleteNote = (noteId) => {
-    setNotes(notes.filter(({ id }) => id !== noteId));
+  onDeleteNote = (noteId) => {
+    this.setState((prevState) => ({
+      notes: prevState.notes.filter(({ id }) => id !== noteId),
+    }));
   };
 
-  const onUpdateNote = (updatedNote) => {
-    const updatedNotesArr = notes.map((note) => {
-      if (note.id === updatedNote.id) {
-        return updatedNote;
-      }
-
-      return note;
-    });
-
-    setNotes(updatedNotesArr);
+  onUpdateNote = (updatedNote) => {
+    this.setState((prevState) => ({
+      notes: prevState.notes.map((note) =>
+        note.id === updatedNote.id ? updatedNote : note
+      ),
+    }));
   };
 
-  const getActiveNote = () => {
+  getActiveNote = () => {
+    const { notes, activeNote } = this.state;
     return notes.find(({ id }) => id === activeNote);
   };
 
-  return (
-    <div className="App">
-      <Sidebar
-        notes={notes}
-        onAddNote={onAddNote}
-        onDeleteNote={onDeleteNote}
-        activeNote={activeNote}
-        setActiveNote={setActiveNote}
-      />
-      <Main activeNote={getActiveNote()} onUpdateNote={onUpdateNote} />
-    </div>
-  );
+  render() {
+    const { notes, activeNote } = this.state;
+
+    return (
+      <div className="App">
+        <Sidebar
+          notes={notes}
+          onAddNote={this.onAddNote}
+          onDeleteNote={this.onDeleteNote}
+          activeNote={activeNote}
+          setActiveNote={(id) => this.setState({ activeNote: id })}
+        />
+        <Main activeNote={this.getActiveNote()} onUpdateNote={this.onUpdateNote} />
+      </div>
+    );
+  }
 }
 
 export default App;

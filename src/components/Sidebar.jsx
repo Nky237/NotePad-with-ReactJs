@@ -1,16 +1,26 @@
-import { useState } from 'react';
-import {CopyToClipboard} from 'react-copy-to-clipboard';
+import React, { Component } from 'react';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 
+class Sidebar extends Component {
+  constructor(props) {
+    super(props);
 
-const Sidebar = ({
-    notes,
-    onAddNote,
-    onDeleteNote,
-    activeNote,
-    setActiveNote,
-  }) => {
+    this.state = {
+      copy: false,
+    };
+  }
+
+  render() {
+    const {
+      notes,
+      onAddNote,
+      onDeleteNote,
+      activeNote,
+      setActiveNote,
+    } = this.props;
     const sortedNotes = notes.sort((a, b) => b.lastModified - a.lastModified);
-    const [copy, setCopy] = useState(false)
+    const { copy } = this.state;
+
     return (
       <div className="app-sidebar">
         <div className="app-sidebar-header">
@@ -22,16 +32,19 @@ const Sidebar = ({
             <div
               className={`app-sidebar-note ${id === activeNote && "active"}`}
               onClick={() => setActiveNote(id)}
+              key={id}
             >
               <div className="sidebar-note-title">
                 <strong>{title}</strong>
-                <CopyToClipboard text = {notes}
-                onCopy={() => setCopy(true)}>
-                <button>{copy ? "copied" : "copy"}</button>
-                 </CopyToClipboard>
+                <CopyToClipboard
+                  text={notes}
+                  onCopy={() => this.setState({ copy: true })}
+                >
+                  <button>{copy ? "copied" : "copy"}</button>
+                </CopyToClipboard>
                 <button onClick={(e) => onDeleteNote(id)}>Delete</button>
               </div>
-  
+
               <p>{body && body.substr(0, 100) + "..."}</p>
               <small className="note-meta">
                 Last Modified{" "}
@@ -45,6 +58,7 @@ const Sidebar = ({
         </div>
       </div>
     );
-  };
-  
-  export default Sidebar;
+  }
+}
+
+export default Sidebar;
