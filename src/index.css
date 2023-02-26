@@ -123,15 +123,20 @@ button:hover {
   font-size: 2rem;
   color: #999;
 }
+.cla{
+  align-items: center;
+  justify-content: space-between;
+  width: 60%;
+}
 .cla button{
-  margin: 0 20px;
   align-items: center;
   color: #08c;
+  font-size: 21px;
 }
 .font{
-  border: 1px solid black;
-  font-size: 20px;
-  width: 60px;
+  /* border: 1px solid black; */
+  font-size: 25px;
+  
   
 
 }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactMarkdown from 'react-markdown';
-import { BsFillCloudUploadFill } from 'react-icons/bs';
+import { MdOutlineAttachment } from 'react-icons/md';
 
 class Main extends Component {
   constructor(props) {
@@ -48,7 +48,9 @@ class Main extends Component {
               <button onClick={() => this.setState({ bold: !bold })}>B</button>
               <button onClick={() => this.setState({ under: !under })}>U</button>
               <button onClick={() => this.setState({ italic: !italic })}>I</button>
-              <BsFillCloudUploadFill onClick={this.selectFiles} />
+              <MdOutlineAttachment onClick={this.selectFiles} 
+              style={{fontSize: '23px'}}
+              />
               <input type="file" id="selectFile" style={{ display: 'none' }} />
               <button onClick={() => this.setState({ fontSize: fontSize + 2 })} className="font">
                 +
