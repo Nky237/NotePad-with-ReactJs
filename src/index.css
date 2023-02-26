@@ -51,11 +51,11 @@ button:hover {
 .app-sidebar-header {
   /* display: flex; */
   justify-content: space-between;
-  padding: 25px;
+  padding: 15px;
  
 }
 .app-sidebar-header h1{
-  padding-bottom: 20px;
+  padding-bottom: 10px;
   text-align: center;
 }
 .app-sidebar-header button{
@@ -68,9 +68,7 @@ button:hover {
   color: white;
 
 }
-.app-sidebar-header h1 {
-  margin: 0;
-}
+
 
 .app-sidebar-notes {
   height: calc(100vh - 78px);

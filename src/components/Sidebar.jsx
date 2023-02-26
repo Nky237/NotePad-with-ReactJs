@@ -40,7 +40,7 @@ class Sidebar extends Component {
                   text={notes}
                   onCopy={() => this.setState({ copy: true })}
                 >
-                  <button>{copy ? "copied" : "copy"}</button>
+                  <button style={{color:'green'}}>{copy ? "copied" : "copy"}</button>
                 </CopyToClipboard>
                 <button onClick={(e) => onDeleteNote(id)}>Delete</button>
               </div>
@@ -55,7 +55,10 @@ class Sidebar extends Component {
               </small>
             </div>
           ))}
+
         </div>
+
+  
       </div>
     );
   }
