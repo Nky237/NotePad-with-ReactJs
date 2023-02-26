@@ -123,6 +123,9 @@ button:hover {
   font-size: 2rem;
   color: #999;
 }
+textarea{
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
 .cla{
   align-items: center;
   justify-content: space-between;
@@ -136,9 +139,11 @@ button:hover {
 .font{
   /* border: 1px solid black; */
   font-size: 25px;
-  
-  
-
+}
+.note-footer{
+position: absolute;
+top: 280px;
+margin-left: 20px;
 }
 
 /* Editing */
@@ -168,6 +173,8 @@ textarea {
   border-top: 1px solid #ddd;
   overflow-y: scroll;
   background: rgba(0, 0, 0, 0.02);
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+ 
 }
 
 .preview-title {

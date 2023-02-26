@@ -13,7 +13,7 @@ class Main extends Component {
     };
   }
 
-  characterLimit = 300;
+  characterLimit = 200;
 
   onEditField = (field, value) => {
     const { activeNote, onUpdateNote } = this.props;
@@ -70,7 +70,10 @@ class Main extends Component {
               id="body"
               placeholder="Write your note here..."
               value={activeNote.body}
-              onChange={(e) => this.onEditField('body', e.target.value)}
+              onChange={(e) =>{
+                if(this.characterLimit - e.target.value.length >=0)
+                this.onEditField('body', e.target.value)}
+              } 
             />
             <div className="note-footer">
               <small>{this.characterLimit - activeNote.body.length} words remaining</small>

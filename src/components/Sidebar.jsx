@@ -24,7 +24,7 @@ class Sidebar extends Component {
     return (
       <div className="app-sidebar">
         <div className="app-sidebar-header">
-          <h1>Notes</h1>
+          <h1>My Notes</h1>
           <button onClick={onAddNote}>+ Add</button>
         </div>
         <div className="app-sidebar-notes">
