@@ -82,7 +82,17 @@ class Main extends Component {
         </div>
         <div className="app-main-note-preview">
           <h1 className="preview-title">{activeNote.title}</h1>
+          <div
+          style={{
+            border: 'none',
+            fontSize: `${fontSize}px`,
+            fontWeight: bold ? 'bold' : 'normal',
+            textDecoration: under ? 'underline' : 'none',
+            fontStyle: italic ? 'italic' : 'inherit'
+          }}
+          > 
           <ReactMarkdown className="markdown-preview">{activeNote.body}</ReactMarkdown>
+          </div>
         </div>
       </div>
     );

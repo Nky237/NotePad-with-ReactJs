@@ -58,7 +58,7 @@ class Sidebar extends Component {
 
         </div>
 
-  
+    
       </div>
     );
   }
