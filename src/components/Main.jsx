@@ -61,7 +61,6 @@ class Main extends Component {
             </div>
             <textarea
               style={{
-                border: 'none',
                 fontSize: `${fontSize}px`,
                 fontWeight: bold ? 'bold' : 'normal',
                 textDecoration: under ? 'underline' : 'none',
